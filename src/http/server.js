@@ -11,6 +11,9 @@ async function createServer() {
     debug: process.env.NODE_ENV === 'local' ? {
       request: ['error'],
     } : {},
+    routes: {
+      cors: true,
+    },
   });
 
   server.ext('onPreResponse', (request, h) => {
