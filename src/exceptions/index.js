@@ -6,6 +6,13 @@ class ClientError extends Error {
   }
 }
 
+class PreprocessingError extends ClientError {
+  constructor(message, statusCode = 400) {
+    super(message, statusCode);
+    this.name = 'PreprocessingError';
+  }
+}
+
 class PredictError extends ClientError {
   constructor(message, statusCode = 400) {
     super(message, statusCode);
@@ -14,5 +21,5 @@ class PredictError extends ClientError {
 }
 
 export {
-  ClientError, PredictError,
+  ClientError, PredictError, PreprocessingError,
 };
