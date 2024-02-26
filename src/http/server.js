@@ -23,9 +23,17 @@ async function createServer() {
       const newResponse = h.response({
         status: 'fail',
         message: response.message,
-        data: {},
       });
       newResponse.code(response.statusCode);
+      return newResponse;
+    }
+
+    if (response instanceof Error && !response.isServer) {
+      const newResponse = h.response({
+        status: 'fail',
+        message: response.message,
+      });
+      newResponse.code(response.output.statusCode);
       return newResponse;
     }
 
